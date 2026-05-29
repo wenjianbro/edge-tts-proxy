@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta charset="utf-8"><title>清读 CleanRead — 商店截图指南</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, 'Inter', sans-serif; background: #f5f5f5; color: #292524; padding: 40px 24px; }
+  h1 { text-align: center; font-size: 26px; font-weight: 500; margin-bottom: 4px; }
+  .sub { text-align: center; color: #777169; font-size: 14px; margin-bottom: 40px; }
+  .shot { max-width: 860px; margin: 0 auto 32px; background: #fff; border-radius: 14px; border: 1px solid #e7e5e4; overflow: hidden; }
+  .shot-header { padding: 16px 24px; border-bottom: 1px solid #f0efed; display: flex; align-items: center; gap: 12px; }
+  .shot-num { width: 28px; height: 28px; border-radius: 50%; background: #2D2D2D; color: #fff; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .shot-title { font-size: 15px; font-weight: 500; }
+  .shot-dims { font-size: 12px; color: #a8a29e; margin-left: auto; }
+  .shot-body { padding: 24px; }
+  .shot-desc { font-size: 13px; color: #4e4e4e; line-height: 1.7; margin-bottom: 16px; }
+  .mockup { background: #fafafa; border: 1px solid #e7e5e4; border-radius: 10px; position: relative; overflow: hidden; }
+  /* 模拟浏览器窗口 */
+  .browser-chrome { height: 36px; background: #e8e8ea; display: flex; align-items: center; padding: 0 14px; gap: 7px; }
+  .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .browser-dot.r { background: #EE5A5A; } .browser-dot.y { background: #F5BD4F; } .browser-dot.g { background: #61C554; }
+  .browser-url { margin-left: 12px; background: #fff; border-radius: 5px; padding: 3px 12px; font-size: 11px; color: #888; flex: 1; }
+  .mockup-content { padding: 40px 60px; min-height: 100px; position: relative; font-family: Georgia, serif; }
+  .mockup-text { font-size: 15px; line-height: 2; color: #333; max-width: 500px; user-select: none; }
+  .mockup-text .highlight { background: #BBDEFB; border-radius: 2px; padding: 1px 0; }
+  /* 浮动按钮模拟 */
+  .float-btn { position: absolute; display: flex; align-items: center; gap: 8px; background: #2D2D2D; color: #fff; border-radius: 24px; padding: 8px 16px; font-size: 13px; font-family: -apple-system, sans-serif; box-shadow: 0 4px 16px rgba(0,0,0,0.18); cursor: default; }
+  .float-btn .play-icon { width: 14px; height: 14px; }
+  .float-btn.paused { padding-right: 8px; }
+  .float-btn .close-x { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; font-size: 11px; margin-left: 2px; }
+  .float-arrow { position: absolute; width: 0; height: 0; }
+  /* 弹窗模拟 */
+  .popup-mock { width: 300px; background: #fff; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.16); overflow: hidden; font-family: -apple-system, sans-serif; }
+  .popup-header { padding: 14px 18px; border-bottom: 1px solid #f0efed; font-size: 14px; font-weight: 500; color: #292524; }
+  .popup-body { padding: 14px 18px; }
+  .popup-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; font-size: 12px; color: #4e4e4e; }
+  .popup-select { padding: 6px 10px; border: 1px solid #d6d3d1; border-radius: 8px; font-size: 12px; background: #fff; width: 160px; }
+  .popup-slider { width: 120px; accent-color: #2D2D2D; }
+  .popup-btn { text-align: center; padding: 8px; border-radius: 20px; font-size: 13px; font-weight: 500; cursor: default; }
+  .popup-btn.preview { background: #2D2D2D; color: #fff; }
+  /* 标注箭头 */
+  .annotation { position: absolute; color: #E85D5D; font-size: 22px; font-weight: bold; }
+  .annot-label { position: absolute; background: #E85D5D; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 3px; white-space: nowrap; }
+  .tips { max-width: 860px; margin: 0 auto; padding: 20px 24px; background: #fff; border-radius: 14px; border: 1px solid #e7e5e4; }
+  .tips h3 { font-size: 15px; font-weight: 500; margin-bottom: 12px; }
+  .tips ul { font-size: 13px; color: #4e4e4e; line-height: 2; padding-left: 18px; }
+</style></head><body>
+
+<h1>清读 CleanRead — 商店截图指南</h1>
+<p class="sub">Chrome Web Store 需要至少 1 张截图（1280×800 或 640×400），建议提交 4 张</p>
+
+<!-- 截图1：核心功能 - 选中朗读 -->
+<div class="shot">
+  <div class="shot-header">
+    <div class="shot-num">1</div>
+    <div class="shot-title">核心功能 — 选中文字，浮动按钮出现</div>
+    <div class="shot-dims">1280×800</div>
+  </div>
+  <div class="shot-body">
+    <div class="shot-desc">
+      <strong>这是最重要的截图。</strong>展示：用户在文章页选中一段中文文字，浮动朗读按钮出现在选中位置附近。<br>
+      操作：打开一篇中文文章（公众号/知乎/博客都行），用鼠标选中 2-3 行文字，截到按钮出现的瞬间。
+    </div>
+    <div class="mockup" style="width:100%;">
+      <div class="browser-chrome"><div class="browser-dot r"></div><div class="browser-dot y"></div><div class="browser-dot g"></div><div class="browser-url">https://example.com/article/...</div></div>
+      <div class="mockup-content" style="min-height:280px;">
+        <div class="mockup-text">
+          <p>在数字化浪潮席卷全球的今天，人工智能技术正在以前所未有</p>
+          <p><span class="highlight">的速度改变着我们的生活方式。从智能语音助手到自动驾驶，</span></p>
+          <p><span class="highlight">从医疗诊断到金融风控，AI 的应用场景日益丰富。</span></p>
+          <p>然而，技术的进步也带来了新的挑战。如何平衡效率与隐私、</p>
+          <p>创新与安全，成为摆在所有人面前的重要课题。</p>
+        </div>
+        <div class="float-btn" style="top:105px; left:300px; animation: none;">
+          <svg width="14" height="14" viewBox="0 0 16 16"><polygon points="4,2 4,14 13,8" fill="white"/></svg>
+          <span>朗读</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 截图2：播放状态 -->
+<div class="shot">
+  <div class="shot-header">
+    <div class="shot-num">2</div>
+    <div class="shot-title">播放中 — 显示暂停图标 + 关闭按钮</div>
+    <div class="shot-dims">1280×800</div>
+  </div>
+  <div class="shot-body">
+    <div class="shot-desc">
+      <strong>展示播放状态下的按钮变化。</strong>点击后按钮变成暂停图标 + 关闭按钮，用户知道可以暂停或停止。<br>
+      操作：点击朗读按钮后截图，按钮处于"播放中"状态。
+    </div>
+    <div class="mockup" style="width:100%;">
+      <div class="browser-chrome"><div class="browser-dot r"></div><div class="browser-dot y"></div><div class="browser-dot g"></div><div class="browser-url">https://example.com/article/...</div></div>
+      <div class="mockup-content" style="min-height:160px;">
+        <div class="mockup-text">
+          <p><span class="highlight">在数字化浪潮席卷全球的今天，人工智能技术正在以前所未有的</span></p>
+          <p><span class="highlight">速度改变着我们的生活方式。从智能语音助手到自动驾驶，</span></p>
+          <p><span class="highlight">从医疗诊断到金融风控，AI 的应用场景日益丰富。</span></p>
+        </div>
+        <div class="float-btn" style="top:80px; left:380px;">
+          <svg width="14" height="14" viewBox="0 0 16 16"><rect x="3" y="2" width="4" height="12" rx="0.8" fill="white"/><rect x="9" y="2" width="4" height="12" rx="0.8" fill="white"/></svg>
+          <span>暂停</span>
+          <div class="close-x">✕</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 截图3：Popup 设置面板 -->
+<div class="shot">
+  <div class="shot-header">
+    <div class="shot-num">3</div>
+    <div class="shot-title">设置面板 — 音色选择 + 语速调节 + 试听</div>
+    <div class="shot-dims">1280×800</div>
+  </div>
+  <div class="shot-body">
+    <div class="shot-desc">
+      <strong>展示扩展的 Popup 设置面板。</strong>点击浏览器工具栏的扩展图标弹出，用户可在这里选音色、调语速、试听。<br>
+      操作：点击工具栏的清读图标，截取弹出的面板。
+    </div>
+    <div class="mockup" style="width:100%; background:#fafafa;">
+      <div class="browser-chrome"><div class="browser-dot r"></div><div class="browser-dot y"></div><div class="browser-dot g"></div><div class="browser-url">https://example.com/article/...</div></div>
+      <div class="mockup-content" style="display:flex; justify-content:flex-end; padding:24px 40px; min-height:320px;">
+        <div style="position:relative;">
+          <div style="position:absolute; top:-6px; right:-8px; width:16px; height:16px; background:#2D2D2D; border-radius:50%;"></div>
+          <div class="popup-mock">
+            <div class="popup-header">清读 CleanRead</div>
+            <div class="popup-body">
+              <div class="popup-row">
+                <span>语音</span>
+                <select class="popup-select"><option>晓晓 (女·活泼)</option></select>
+              </div>
+              <div class="popup-row">
+                <span>语速</span>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <input type="range" class="popup-slider" min="0.5" max="3.0" step="0.1" value="1.0">
+                  <span style="font-size:12px;width:28px;">1.0x</span>
+                </div>
+              </div>
+              <div class="popup-btn preview">试听</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 截图4：错误/边界状态（可选） -->
+<div class="shot">
+  <div class="shot-header">
+    <div class="shot-num">4</div>
+    <div class="shot-title">可选 — 文本过长提示</div>
+    <div class="shot-dims">1280×800</div>
+  </div>
+  <div class="shot-body">
+    <div class="shot-desc">
+      <strong>展示边界处理。</strong>选中超过 5000 字符的文字时，按钮显示提示信息。<br>
+      操作：选中一大段文字（可以一直拖选），截到"文本过长"提示。
+    </div>
+    <div class="mockup" style="width:100%;">
+      <div class="browser-chrome"><div class="browser-dot r"></div><div class="browser-dot y"></div><div class="browser-dot g"></div><div class="browser-url">https://example.com/article/...</div></div>
+      <div class="mockup-content" style="min-height:160px;">
+        <div class="mockup-text">
+          <p><span class="highlight">在数字化浪潮席卷全球的今天，人工智能技术正在以前所未有的速度改变着我们的生活方式……</span></p>
+          <p><span class="highlight">（大量选中文字...）</span></p>
+        </div>
+        <div class="float-btn" style="top:70px; left:430px; background:#E85D5D;">
+          <svg width="14" height="14" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" fill="none" stroke="white" stroke-width="1.5"/><line x1="8" y1="5" x2="8" y2="9" stroke="white" stroke-width="1.5"/><circle cx="8" cy="11" r="0.8" fill="white"/></svg>
+          <span>文本过长，请减少选中内容</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 实操提示 -->
+<div class="tips">
+  <h3>实操步骤</h3>
+  <ul>
+    <li>用 Chrome 打开一篇中文文章（推荐知乎、公众号、少数派等排版干净的网站）</li>
+    <li>截图用系统截图工具：<code>Win+Shift+S</code>（Windows）或 <code>Cmd+Shift+4</code>（Mac）</li>
+    <li>每张图截浏览器窗口（包含地址栏），不要只截网页内容</li>
+    <li>建议全屏模式下截 1280×800，Chrome Web Store 会自动适配</li>
+    <li>截图保存为 PNG，不要压缩（商店对画质有要求）</li>
+    <li>截图里不要出现个人隐私信息（邮箱、头像、书签等），可以用隐私模式或访客模式打开</li>
+  </ul>
+</div>
+
+</body></html>

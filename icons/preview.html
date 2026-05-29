@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>清读 CleanRead — 图标预览</title>
+<style>
+  body { font-family: -apple-system, sans-serif; background: #f0f0f0; text-align: center; padding: 40px; }
+  .container { display: flex; gap: 40px; justify-content: center; align-items: center; flex-wrap: wrap; }
+  .card { background: white; border-radius: 16px; padding: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+  .label { margin-top: 12px; color: #888; font-size: 14px; }
+  svg { display: block; margin: 0 auto; }
+  .desc { max-width: 500px; margin: 30px auto; color: #444; line-height: 1.8; text-align: left; background: white; border-radius: 12px; padding: 24px; }
+  .desc h3 { margin-top: 0; }
+</style></head><body>
+<h1>清读 CleanRead — 图标预览</h1>
+
+<div class="container">
+
+<div class="card">
+  <svg width="128" height="128" viewBox="0 0 128 128">
+    <defs>
+      <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#5BAFE0"/>
+        <stop offset="100%" stop-color="#3578B0"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="128" height="128" rx="28" fill="url(#bg)"/>
+    <polygon points="46,28 46,100 98,64" fill="white" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M66,38 A28,28 0 0,1 66,90" fill="none" stroke="white" stroke-width="5" stroke-linecap="round"/>
+    <path d="M80,28 A42,42 0 0,1 80,100" fill="none" stroke="white" stroke-width="4.5" stroke-linecap="round" opacity="0.75"/>
+  </svg>
+  <div class="label">128×128 — 商店图标</div>
+</div>
+
+<div class="card">
+  <svg width="48" height="48" viewBox="0 0 48 48">
+    <defs>
+      <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#5BAFE0"/>
+        <stop offset="100%" stop-color="#3578B0"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="48" height="48" rx="10" fill="url(#bg2)"/>
+    <polygon points="17,10 17,38 37,24" fill="white" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M24.5,14 A11.5,11.5 0 0,1 24.5,34" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M30,9.5 A17.5,17.5 0 0,1 30,38.5" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" opacity="0.75"/>
+  </svg>
+  <div class="label">48×48 — 扩展管理</div>
+</div>
+
+<div class="card">
+  <svg width="16" height="16" viewBox="0 0 16 16">
+    <defs>
+      <linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#5BAFE0"/>
+        <stop offset="100%" stop-color="#3578B0"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="16" height="16" rx="3.5" fill="url(#bg3)"/>
+    <polygon points="5.5,3.5 5.5,12.5 12.5,8" fill="white"/>
+  </svg>
+  <div class="label">16×16 — 工具栏</div>
+</div>
+
+</div>
+
+<div class="desc">
+<h3>设计说明</h3>
+<p><strong>配色：</strong>渐变蓝 (#5BAFE0 → #3578B0)，跟浮动按钮 UI 一致</p>
+<p><strong>图标：</strong>白色播放三角 + 两道音波弧线，一眼看懂是"听音频"</p>
+<p><strong>风格：</strong>圆角方形，类似 iOS 应用图标，简洁现代</p>
+<p><strong>小尺寸适配：</strong>16px 只保留播放三角，去掉音波（太小看不清）</p>
+<p><strong>灵感：</strong>播客 / 有声书类应用的通用识别模式</p>
+</div>
+
+</body></html>

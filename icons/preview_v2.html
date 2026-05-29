@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta charset="utf-8"><title>清读 CleanRead — 图标设计方案</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'Inter', sans-serif; background: #f5f5f5; color: #292524; padding: 48px 24px; }
+  h1 { text-align: center; font-size: 28px; font-weight: 500; margin-bottom: 8px; letter-spacing: -0.3px; }
+  .sub { text-align: center; color: #777169; font-size: 15px; margin-bottom: 48px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; max-width: 960px; margin: 0 auto; }
+  .card { background: #fff; border-radius: 16px; padding: 32px; text-align: center; border: 1px solid #e7e5e4; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+  .icons { display: flex; justify-content: center; align-items: center; gap: 24px; margin-bottom: 20px; }
+  .icon-group { text-align: center; }
+  .icon-group .size-label { font-size: 11px; color: #a8a29e; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .card h3 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+  .card .tags { font-size: 12px; color: #a8a29e; margin-bottom: 12px; }
+  .card .desc { font-size: 13px; color: #4e4e4e; line-height: 1.6; text-align: left; }
+  .pick { display: inline-block; margin-top: 14px; padding: 6px 16px; border-radius: 999px; font-size: 12px; font-weight: 500; }
+  .pick-a { background: #292524; color: #fff; }
+  .pick-b { background: #f0efed; color: #292524; }
+</style></head><body>
+
+<h1>清读 CleanRead — 图标设计方案</h1>
+<p class="sub">参考现代设计系统（Linear / ElevenLabs / Notion）的三套方案</p>
+
+<div class="grid">
+
+<!-- 方案 A: 柔和渐变 + 书页音波 -->
+<div class="card">
+  <h3>方案 A · 书页音波</h3>
+  <div class="tags">柔和 · 文艺 · 有温度</div>
+  <div class="icons">
+    <div class="icon-group">
+      <svg width="128" height="128" viewBox="0 0 128 128">
+        <defs>
+          <linearGradient id="ga" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#EEF2FF"/>
+            <stop offset="100%" stop-color="#DBE4FF"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="128" height="128" rx="28" fill="url(#ga)"/>
+        <!-- 翻开的书页 -->
+        <path d="M40,38 Q40,28 64,32 Q88,28 88,38 L88,88 Q88,94 64,90 Q40,94 40,88 Z" fill="#4F6ED8" opacity="0.9"/>
+        <!-- 音波从书中发出 -->
+        <path d="M50,62 Q56,54 56,62 T56,70" fill="none" stroke="#7B93E8" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M46,56 Q54,44 54,56 T54,76" fill="none" stroke="#7B93E8" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+        <path d="M42,50 Q52,34 52,50 T52,82" fill="none" stroke="#7B93E8" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
+      </svg>
+      <div class="size-label">128</div>
+    </div>
+    <div class="icon-group">
+      <svg width="48" height="48" viewBox="0 0 48 48">
+        <defs>
+          <linearGradient id="ga2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#EEF2FF"/><stop offset="100%" stop-color="#DBE4FF"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="48" height="48" rx="10" fill="url(#ga2)"/>
+        <path d="M14,14 Q14,10 24,12 Q34,10 34,14 L34,34 Q34,36 24,34 Q14,36 14,34 Z" fill="#4F6ED8" opacity="0.9"/>
+        <path d="M19,23 Q21,20 21,23 T21,27" fill="none" stroke="#7B93E8" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M17,21 Q20,16 20,21 T20,29" fill="none" stroke="#7B93E8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+      </svg>
+      <div class="size-label">48</div>
+    </div>
+    <div class="icon-group">
+      <svg width="16" height="16" viewBox="0 0 16 16">
+        <rect x="0" y="0" width="16" height="16" rx="3.5" fill="#EEF2FF"/>
+        <path d="M5,5 Q5,3.5 8,4.5 Q11,3.5 11,5 L11,11 Q11,11.5 8,11 Q5,11.5 5,11 Z" fill="#4F6ED8"/>
+      </svg>
+      <div class="size-label">16</div>
+    </div>
+  </div>
+  <div class="desc">
+    <strong>概念：</strong>翻开书本 + 音波纹从书中扩散。<br>
+    <strong>配色：</strong>淡紫蓝渐变底 (#EEF2FF→#DBE4FF)，靛蓝书页<br>
+    <strong>风格：</strong>柔和有温度，适合"阅读"场景<br>
+    <strong>灵感：</strong>Apple Books + ElevenLabs 柔和质感
+  </div>
+</div>
+
+<!-- 方案 B: 深色 + 极简图形 -->
+<div class="card">
+  <h3>方案 B · 极简声波</h3>
+  <div class="tags">锐利 · 极简 · 专业</div>
+  <div class="icons">
+    <div class="icon-group">
+      <svg width="128" height="128" viewBox="0 0 128 128">
+        <rect x="0" y="0" width="128" height="128" rx="28" fill="#1A1A2E"/>
+        <!-- 极简音柱：4条竖线 -->
+        <rect x="30" y="46" width="10" height="36" rx="5" fill="white" opacity="0.95"/>
+        <rect x="46" y="32" width="10" height="64" rx="5" fill="white" opacity="0.95"/>
+        <rect x="62" y="18" width="10" height="92" rx="5" fill="white" opacity="0.95"/>
+        <rect x="78" y="46" width="10" height="36" rx="5" fill="white" opacity="0.95"/>
+      </svg>
+      <div class="size-label">128</div>
+    </div>
+    <div class="icon-group">
+      <svg width="48" height="48" viewBox="0 0 48 48">
+        <rect x="0" y="0" width="48" height="48" rx="10" fill="#1A1A2E"/>
+        <rect x="11" y="18" width="3.5" height="12" rx="1.75" fill="white" opacity="0.95"/>
+        <rect x="17" y="12" width="3.5" height="24" rx="1.75" fill="white" opacity="0.95"/>
+        <rect x="23" y="6"  width="3.5" height="36" rx="1.75" fill="white" opacity="0.95"/>
+        <rect x="29" y="18" width="3.5" height="12" rx="1.75" fill="white" opacity="0.95"/>
+      </svg>
+      <div class="size-label">48</div>
+    </div>
+    <div class="icon-group">
+      <svg width="16" height="16" viewBox="0 0 16 16">
+        <rect x="0" y="0" width="16" height="16" rx="3.5" fill="#1A1A2E"/>
+        <rect x="3.5" y="5" width="1.5" height="6" rx="0.75" fill="white"/>
+        <rect x="6" y="3" width="1.5" height="10" rx="0.75" fill="white"/>
+        <rect x="8.5" y="1" width="1.5" height="14" rx="0.75" fill="white"/>
+        <rect x="11" y="5" width="1.5" height="6" rx="0.75" fill="white"/>
+      </svg>
+      <div class="size-label">16</div>
+    </div>
+  </div>
+  <div class="desc">
+    <strong>概念：</strong>四个音柱，中间高两边低，形成声波轮廓<br>
+    <strong>配色：</strong>深海军蓝底 (#1A1A2E)，纯白音柱<br>
+    <strong>风格：</strong>锐利专业，很像播客/有声书类应用<br>
+    <strong>灵感：</strong>Linear + Apple Podcasts
+  </div>
+</div>
+
+<!-- 方案 C: 暖白 + 渐变圆 + 简约图形 -->
+<div class="card">
+  <h3>方案 C · 清 · 声纹</h3>
+  <div class="tags">干净 · 文艺 · 东方</div>
+  <div class="icons">
+    <div class="icon-group">
+      <svg width="128" height="128" viewBox="0 0 128 128">
+        <defs>
+          <radialGradient id="gc" cx="0.5" cy="0.4" r="0.6">
+            <stop offset="0%" stop-color="#E8F0FE"/>
+            <stop offset="100%" stop-color="#F8FAFC"/>
+          </radialGradient>
+        </defs>
+        <rect x="0" y="0" width="128" height="128" rx="28" fill="#F8FAFC"/>
+        <circle cx="64" cy="48" r="32" fill="url(#gc)"/>
+        <!-- 清字的简化笔画：三点水 + 青 -->
+        <g transform="translate(64,62)" fill="none" stroke="#3B82C4" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+          <!-- 三点水（简化） -->
+          <circle cx="-14" cy="-12" r="3" fill="#3B82C4"/>
+          <circle cx="-8" cy="0" r="3" fill="#3B82C4"/>
+          <circle cx="-12" cy="12" r="3" fill="#3B82C4"/>
+          <!-- 青的上半 -->
+          <line x1="4" y1="-16" x2="20" y2="-16"/>
+          <line x1="12" y1="-20" x2="12" y2="-4"/>
+          <line x1="4" y1="-4" x2="20" y2="-4"/>
+          <!-- 青的下半（月） -->
+          <rect x="6" y="2" width="16" height="12" rx="3"/>
+        </g>
+        <!-- 声纹小圆点 -->
+        <circle cx="88" cy="58" r="2.5" fill="#60A5FA" opacity="0.8"/>
+        <circle cx="96" cy="58" r="2.0" fill="#93C5FD" opacity="0.6"/>
+        <circle cx="102" cy="58" r="1.5" fill="#BFDBFE" opacity="0.4"/>
+      </svg>
+      <div class="size-label">128</div>
+    </div>
+    <div class="icon-group">
+      <svg width="48" height="48" viewBox="0 0 48 48">
+        <rect x="0" y="0" width="48" height="48" rx="10" fill="#F8FAFC"/>
+        <circle cx="24" cy="18" r="12" fill="#E8F0FE"/>
+        <g transform="translate(24,23)" fill="none" stroke="#3B82C4" stroke-width="2.2" stroke-linecap="round">
+          <circle cx="-6" cy="-5" r="1.5" fill="#3B82C4"/>
+          <circle cx="-3" cy="0"  r="1.5" fill="#3B82C4"/>
+          <circle cx="-5" cy="5"  r="1.5" fill="#3B82C4"/>
+          <line x1="2" y1="-7" x2="9" y2="-7"/>
+          <line x1="5.5" y1="-9" x2="5.5" y2="-1.5"/>
+          <rect x="3" y="1" width="7" height="5" rx="1.5"/>
+        </g>
+      </svg>
+      <div class="size-label">48</div>
+    </div>
+    <div class="icon-group">
+      <svg width="16" height="16" viewBox="0 0 16 16">
+        <rect x="0" y="0" width="16" height="16" rx="3.5" fill="#F8FAFC"/>
+        <circle cx="8" cy="7" r="4.5" fill="#E8F0FE"/>
+        <g transform="translate(8,9)" fill="none" stroke="#3B82C4" stroke-width="1.2" stroke-linecap="round">
+          <line x1="-1" y1="-3" x2="3" y2="-3"/>
+          <line x1="1" y1="-4" x2="1" y2="-1"/>
+          <rect x="-0.5" y="0.5" width="3" height="2" rx="0.6"/>
+        </g>
+      </svg>
+      <div class="size-label">16</div>
+    </div>
+  </div>
+  <div class="desc">
+    <strong>概念：</strong>融入中文"清"字的书法感 + 声纹圆点<br>
+    <strong>配色：</strong>暖白底 (#F8FAFC) + 雾蓝渐变圆 + 钴蓝笔画<br>
+    <strong>风格：</strong>干净东方感，"清读"的含义一目了然<br>
+    <strong>灵感：</strong>Notion 极简 + 中文品牌气质
+  </div>
+</div>
+
+<!-- 方案 D: 多彩渐变 + 耳机/书本 -->
+<div class="card">
+  <h3>方案 D · 多彩声波环</h3>
+  <div class="tags">活泼 · 年轻 · 科技感</div>
+  <div class="icons">
+    <div class="icon-group">
+      <svg width="128" height="128" viewBox="0 0 128 128">
+        <defs>
+          <linearGradient id="gd" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#6366F1"/>
+            <stop offset="50%" stop-color="#8B5CF6"/>
+            <stop offset="100%" stop-color="#A78BFA"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="128" height="128" rx="28" fill="url(#gd)"/>
+        <!-- 播放三角居中 -->
+        <polygon points="42,32 42,96 98,64" fill="white"/>
+        <!-- 3道同心声波弧线 -->
+        <ellipse cx="64" cy="64" rx="48" ry="48" fill="none" stroke="white" stroke-width="2.5" stroke-dasharray="70 150" opacity="0.25"/>
+        <ellipse cx="64" cy="64" rx="54" ry="54" fill="none" stroke="white" stroke-width="2.0" stroke-dasharray="60 180" opacity="0.18"/>
+        <ellipse cx="64" cy="64" rx="60" ry="60" fill="none" stroke="white" stroke-width="1.5" stroke-dasharray="40 220" opacity="0.10"/>
+      </svg>
+      <div class="size-label">128</div>
+    </div>
+    <div class="icon-group">
+      <svg width="48" height="48" viewBox="0 0 48 48">
+        <defs>
+          <linearGradient id="gd2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#6366F1"/><stop offset="50%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#A78BFA"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="48" height="48" rx="10" fill="url(#gd2)"/>
+        <polygon points="15,12 15,36 36,24" fill="white"/>
+        <ellipse cx="24" cy="24" rx="18" ry="18" fill="none" stroke="white" stroke-width="1.2" stroke-dasharray="24 56" opacity="0.3"/>
+      </svg>
+      <div class="size-label">48</div>
+    </div>
+    <div class="icon-group">
+      <svg width="16" height="16" viewBox="0 0 16 16">
+        <rect x="0" y="0" width="16" height="16" rx="3.5" fill="#6366F1"/>
+        <polygon points="5,4 5,12 12,8" fill="white"/>
+      </svg>
+      <div class="size-label">16</div>
+    </div>
+  </div>
+  <div class="desc">
+    <strong>概念：</strong>紫罗兰渐变底 + 居中白色播放三角 + 同心声波环<br>
+    <strong>配色：</strong>Indigo→Violet→Lavender 渐变<br>
+    <strong>风格：</strong>活泼科技感，像主流播客/音乐应用<br>
+    <strong>灵感：</strong>Spotify 风格 + Figma 渐变
+  </div>
+</div>
+
+</div>
+
+<div style="max-width:600px;margin:40px auto 0;padding:24px;background:#fff;border-radius:12px;border:1px solid #e7e5e4;">
+  <p style="font-size:14px;color:#4e4e4e;text-align:center;">
+    在浏览器中查看效果后，告诉我你选哪个方案（A / B / C / D），<br>或者想要哪个方案的基础上调整（配色、元素、风格）。
+  </p>
+</div>
+
+</body></html>

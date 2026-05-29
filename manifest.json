@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "网页阅读工具-清读CleanRead",
+  "version": "2.0.0",
+  "description": "最清爽的网页阅读工具，网页太长不想看，点一下就能听。",
+  "permissions": ["activeTab", "storage"],
+
+  "background": {
+    "service_worker": "src/background/background.js"
+  },
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "清读"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "src/shared/messages.js",
+        "src/shared/constants.js",
+        "src/shared/state-machine.js",
+        "src/tts/tts-provider.js",
+        "src/tts/voices.js",
+        "src/tts/remote-tts-provider.js",
+        "src/tts/speech-synth-provider.js",
+        "src/audio/audio-manager.js",
+        "src/content/selection-detector.js",
+        "src/content/floating-button.js",
+        "src/content/tts-synthesizer.js",
+        "src/content/ui-controller.js",
+        "src/content/content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "minimum_chrome_version": "110"
+}

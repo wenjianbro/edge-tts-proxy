@@ -1,0 +1,15 @@
+// 全局常量
+const CONSTANTS = {
+  TEXT_MIN_LENGTH: 1,
+  TEXT_MAX_LENGTH: 5000,
+  REQUEST_TIMEOUT_MS: 10000,
+  BUTTON_APPEAR_DELAY_MS: 200,
+  DEFAULT_VOICE_ID: 'zh-CN-XiaoxiaoNeural',
+  DEFAULT_SPEED: 1.0,
+  SPEED_MIN: 0.5,
+  SPEED_MAX: 3.0,
+  SPEED_STEP: 0.1,
+  OFFS_TIMEOUT_MS: 30000,
+
+  REMOTE_TTS_ENDPOINT: 'https://edge-tts-proxy-b7rh.onrender.com'
+};

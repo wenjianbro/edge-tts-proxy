@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta charset="utf-8"><title>清读 CleanRead — 推广图设计</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, 'Inter', sans-serif; background: #f0f0f0; padding: 40px 24px; }
+  h1 { text-align: center; font-size: 22px; font-weight: 500; margin-bottom: 32px; color: #292524; }
+  .section { max-width: 920px; margin: 0 auto 40px; }
+  .section h2 { font-size: 14px; color: #777; margin-bottom: 12px; font-weight: 400; }
+  .artboard { border-radius: 10px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.12); position: relative; }
+  .artboard.lg { width:100%; aspect-ratio: 1400/560; }
+  .artboard.sm { width:440px; height:280px; margin: 0 auto; }
+
+  /* 设计 A: 深色 + 音柱 */
+  .design-a { background: #1E1E24; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; position: relative; overflow: hidden; }
+  .design-a.lg { padding: 0 120px; }
+  .design-a .left { z-index: 2; }
+  .design-a .left .name { font-size: 40px; font-weight: 700; color: #fff; letter-spacing: 1px; margin-bottom: 8px; }
+  .design-a .left .tagline { font-size: 18px; color: #a8a29e; letter-spacing: 0.5px; }
+  .design-a .bars { display: flex; align-items: flex-end; gap: 10px; z-index: 2; }
+  .design-a .bars div { width: 12px; border-radius: 6px; background: #4a9eff; }
+  .design-a .bars div:nth-child(1) { height: 60px; opacity: 0.5; }
+  .design-a .bars div:nth-child(2) { height: 100px; opacity: 0.7; }
+  .design-a .bars div:nth-child(3) { height: 140px; opacity: 0.9; }
+  .design-a .bars div:nth-child(4) { height: 80px; opacity: 0.6; }
+  .design-a .bars div:nth-child(5) { height: 50px; opacity: 0.4; }
+  /* 大号适配 */
+  .design-a.lg .left .name { font-size: 56px; }
+  .design-a.lg .left .tagline { font-size: 22px; }
+  .design-a.lg .bars { gap: 14px; }
+  .design-a.lg .bars div { width: 16px; }
+  .design-a.lg .bars div:nth-child(1) { height: 80px; }
+  .design-a.lg .bars div:nth-child(2) { height: 140px; }
+  .design-a.lg .bars div:nth-child(3) { height: 200px; }
+  .design-a.lg .bars div:nth-child(4) { height: 110px; }
+  .design-a.lg .bars div:nth-child(5) { height: 70px; }
+
+  /* 设计 B: 深色 + 居中 */
+  .design-b { background: #1A1A2E; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .design-b .icon-wrap { width: 72px; height: 72px; background: #27274a; border-radius: 18px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+  .design-b .name { font-size: 34px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .design-b .tagline { font-size: 16px; color: #99a; }
+  .design-b.lg .icon-wrap { width: 96px; height: 96px; border-radius: 22px; margin-bottom: 28px; }
+  .design-b.lg .name { font-size: 48px; }
+
+  /* 设计 C: 浅色渐变 + 卡片感 */
+  .design-c { background: linear-gradient(135deg, #EEF2FF 0%, #DBE4FF 50%, #F0F4FF 100%); display: flex; align-items: center; padding: 0 80px; }
+  .design-c.lg { padding: 0 120px; }
+  .design-c .icon-square { width: 80px; height: 80px; background: #1E1E24; border-radius: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 32px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+  .design-c .right { }
+  .design-c .name { font-size: 36px; font-weight: 700; color: #1E1E24; margin-bottom: 4px; }
+  .design-c .tagline { font-size: 16px; color: #666; }
+  .design-c .bars-btm { display: flex; align-items:flex-end; gap:4px; margin-top:6px; }
+  .design-c .bars-btm div { width:4px; border-radius:2px; background: #4a9eff; }
+  .design-c .bars-btm div:nth-child(1){height:10px;opacity:0.5} .design-c .bars-btm div:nth-child(2){height:18px;opacity:0.7} .design-c .bars-btm div:nth-child(3){height:26px;opacity:1} .design-c .bars-btm div:nth-child(4){height:14px;opacity:0.6} .design-c .bars-btm div:nth-child(5){height:8px;opacity:0.4}
+  .design-c.lg .icon-square { width: 100px; height: 100px; border-radius: 24px; margin-right: 40px; }
+  .design-c.lg .name { font-size: 48px; }
+  .design-c.lg .tagline { font-size: 20px; }
+
+  .btn-row { display: flex; gap: 10px; margin-top: 16px; }
+  .btn-row span { padding: 6px 16px; border-radius: 999px; font-size: 12px; font-weight: 500; background: #292524; color:#fff; cursor: default; }
+
+  .dim-label { position: absolute; top: 12px; right: 16px; font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 1px; }
+  .design-c .dim-label { color: rgba(0,0,0,0.2); }
+</style></head><body>
+
+<h1>清读 CleanRead — 推广图设计</h1>
+
+<!-- 方案 A -->
+<div class="section">
+  <h2>方案 A · 深色 + 音柱侧边（推荐）</h2>
+  <div class="artboard lg design-a">
+    <span class="dim-label">1400 × 560</span>
+    <div class="left">
+      <div class="name">清读 CleanRead</div>
+      <div class="tagline">选中即播 · AI 自然语音 · 零配置</div>
+    </div>
+    <div class="bars">
+      <div></div><div></div><div></div><div></div><div></div>
+    </div>
+  </div>
+  <br>
+  <div class="artboard sm design-a">
+    <span class="dim-label">440 × 280</span>
+    <div class="left">
+      <div class="name">清读 CleanRead</div>
+      <div class="tagline">选中即播 · AI 自然语音</div>
+    </div>
+    <div class="bars">
+      <div></div><div></div><div></div><div></div><div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 方案 B -->
+<div class="section">
+  <h2>方案 B · 深色 + 居中 icon</h2>
+  <div class="artboard lg design-b">
+    <span class="dim-label">1400 × 560</span>
+    <div class="icon-wrap">
+      <svg width="40" height="40" viewBox="0 0 48 48"><rect x="9" y="16" width="5" height="16" rx="2.5" fill="#7B93E8"/><rect x="18" y="8" width="5" height="32" rx="2.5" fill="#93B4F8"/><rect x="27" y="4" width="5" height="40" rx="2.5" fill="#A8C8FF"/><rect x="36" y="16" width="5" height="16" rx="2.5" fill="#7B93E8"/></svg>
+    </div>
+    <div class="name">清读 CleanRead</div>
+    <div class="tagline">选中即播 · AI 自然语音 · 零配置开箱即用</div>
+  </div>
+  <br>
+  <div class="artboard sm design-b">
+    <span class="dim-label">440 × 280</span>
+    <div class="icon-wrap" style="width:56px;height:56px;border-radius:14px;margin-bottom:14px;">
+      <svg width="32" height="32" viewBox="0 0 48 48"><rect x="9" y="16" width="5" height="16" rx="2.5" fill="#7B93E8"/><rect x="18" y="8" width="5" height="32" rx="2.5" fill="#93B4F8"/><rect x="27" y="4" width="5" height="40" rx="2.5" fill="#A8C8FF"/><rect x="36" y="16" width="5" height="16" rx="2.5" fill="#7B93E8"/></svg>
+    </div>
+    <div class="name" style="font-size:28px;">清读 CleanRead</div>
+    <div class="tagline" style="font-size:14px;">选中即播 · AI 自然语音 · 零配置开箱即用</div>
+  </div>
+</div>
+
+<!-- 方案 C -->
+<div class="section">
+  <h2>方案 C · 浅色渐变 + 卡片</h2>
+  <div class="artboard lg design-c">
+    <span class="dim-label">1400 × 560</span>
+    <div class="icon-square">
+      <svg width="48" height="48" viewBox="0 0 48 48"><rect x="9" y="16" width="5" height="16" rx="2.5" fill="#93C5FD"/><rect x="18" y="8" width="5" height="32" rx="2.5" fill="#A5D4FF"/><rect x="27" y="4" width="5" height="40" rx="2.5" fill="#BFE0FF"/><rect x="36" y="16" width="5" height="16" rx="2.5" fill="#93C5FD"/></svg>
+    </div>
+    <div class="right">
+      <div class="name">清读 CleanRead</div>
+      <div class="tagline">选中即播 · AI 自然语音 · 零配置开箱即用</div>
+    </div>
+  </div>
+  <br>
+  <div class="artboard sm design-c">
+    <span class="dim-label">440 × 280</span>
+    <div class="icon-square" style="width:60px;height:60px;border-radius:16px;margin-right:24px;">
+      <svg width="36" height="36" viewBox="0 0 48 48"><rect x="9" y="16" width="5" height="16" rx="2.5" fill="#93C5FD"/><rect x="18" y="8" width="5" height="32" rx="2.5" fill="#A5D4FF"/><rect x="27" y="4" width="5" height="40" rx="2.5" fill="#BFE0FF"/><rect x="36" y="16" width="5" height="16" rx="2.5" fill="#93C5FD"/></svg>
+    </div>
+    <div class="right">
+      <div class="name" style="font-size:28px;">清读 CleanRead</div>
+      <div class="tagline" style="font-size:14px;">选中即播 · AI 自然语音 · 零配置开箱即用</div>
+    </div>
+  </div>
+</div>
+
+</body></html>
