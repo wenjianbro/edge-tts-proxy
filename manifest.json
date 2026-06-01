@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "网页阅读工具-清读CleanRead",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "最清爽的网页阅读工具，网页太长不想看，点一下就能听。",
-  "permissions": ["activeTab", "storage"],
+  "permissions": ["storage"],
 
   "background": {
     "service_worker": "src/background/background.js"
