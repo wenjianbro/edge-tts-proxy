@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Edge TTS WebSocket Test</title></head>
+<body>
+<h2>Edge TTS WebSocket — 普通网页测试</h2>
+<textarea id="text" rows="3" cols="60">你好世界，这是一条测试语音。</textarea><br>
+<button id="go">朗读</button> <button id="cancel">取消</button>
+<pre id="log"></pre>
+
+<script>
+const el = (id) => document.getElementById(id);
+let ws = null, chunks = [];
+let cancelled = false;
+
+function log(msg) {
+  el('log').textContent += '[' + new Date().toLocaleTimeString() + '] ' + msg + '\n';
+}
+
+function dateToString() {
+  const d = new Date();
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const pad = n => String(n).padStart(2, '0');
+  return `${days[d.getUTCDay()]} ${months[d.getUTCMonth()]} ${pad(d.getUTCDate())} ${d.getUTCFullYear()} ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())} GMT+0000 (Coordinated Universal Time)`;
+}
+
+async function generateToken() {
+  const WIN_EPOCH = 11644473600n;
+  const TICKS_PER_SEC = 10000000n;
+  const TICKS_PER_INTERVAL = 3000000000n;
+  const unixSec = BigInt(Math.floor(Date.now() / 1000));
+  const total = (unixSec + WIN_EPOCH) * TICKS_PER_SEC;
+  const interval = (total / TICKS_PER_INTERVAL) * TICKS_PER_INTERVAL;
+  const raw = `${interval}6A5AA1D4EAFF4E9FB37E23D68491D6F4`;
+  const hashBuffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(raw));
+  return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2,'0')).join('').toUpperCase();
+}
+
+function buildSSML(text) {
+  return `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="zh-CN"><voice name="zh-CN-XiaoxiaoNeural"><prosody rate="+0%">${text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</prosody></voice></speak>`;
+}
+
+el('go').onclick = async () => {
+  cancelled = false;
+  chunks = [];
+  el('log').textContent = '';
+  log('Test starting...');
+  log('Origin will be: ' + location.origin);
+  log('User-Agent: ' + navigator.userAgent.substring(0, 80));
+
+  try {
+    const token = await generateToken();
+    log('Token: ' + token.substring(0, 32) + '...');
+
+    const connId = crypto.randomUUID().replace(/-/g, '');
+    const url = `wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=${connId}&Sec-MS-GEC=${token}&Sec-MS-GEC-Version=1-143.0.3650.75`;
+    log('Connecting to WebSocket...');
+    ws = new WebSocket(url);
+    ws.binaryType = 'arraybuffer';
+
+    ws.onopen = () => {
+      log('WebSocket OPENED!');
+
+      const ts = dateToString();
+      const configMsg = `X-Timestamp:${ts}\r\nContent-Type:application/json; charset=utf-8\r\nPath:speech.config\r\n\r\n{"context":{"synthesis":{"audio":{"metadataoptions":{"sentenceBoundaryEnabled":"false","wordBoundaryEnabled":"false"},"outputFormat":"audio-24khz-48kbitrate-mono-mp3"}}}}\r\n`;
+      ws.send(configMsg);
+      log('Config sent');
+
+      const ssml = buildSSML(el('text').value);
+      const rid = crypto.randomUUID().replace(/-/g, '');
+      const ssmlMsg = `X-RequestId:${rid}\r\nContent-Type:application/ssml+xml\r\nX-Timestamp:${ts}Z\r\nPath:ssml\r\n\r\n${ssml}`;
+      ws.send(ssmlMsg);
+      log('SSML sent');
+    };
+
+    ws.onmessage = (event) => {
+      if (cancelled) return;
+      if (typeof event.data === 'string') {
+        log('Text msg: ' + event.data.substring(0, 200));
+        if (event.data.includes('turn.end')) {
+          log('=== DONE! Total chunks: ' + chunks.length + ', total bytes: ' + chunks.reduce((s,c) => s + c.length, 0));
+          ws.close();
+        }
+        return;
+      }
+      const raw = new Uint8Array(event.data);
+      const txt = new TextDecoder().decode(raw.slice(0, 200));
+      const hdrEnd = txt.indexOf('\r\n\r\n');
+      const data = hdrEnd !== -1 ? raw.slice(hdrEnd + 4) : raw;
+      chunks.push(data);
+      log('Audio chunk: ' + data.length + ' bytes (total: ' + chunks.reduce((s,c) => s + c.length, 0) + ')');
+    };
+
+    ws.onerror = (e) => {
+      log('WebSocket ERROR');
+      console.error('WS error event:', e);
+    };
+
+    ws.onclose = (ev) => {
+      log('WebSocket CLOSED. Code=' + ev.code + ' reason=' + ev.reason + ' wasClean=' + ev.wasClean);
+    };
+
+  } catch (e) {
+    log('EXCEPTION: ' + e.message);
+  }
+};
+
+el('cancel').onclick = () => {
+  cancelled = true;
+  if (ws) { ws.close(); ws = null; }
+  log('Cancelled');
+};
+</script>
+</body>
+</html>

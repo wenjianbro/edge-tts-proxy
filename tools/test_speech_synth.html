@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><title>SpeechSynthesis 音色测试</title></head>
+<body>
+<h2>SpeechSynthesis 可用中文音色</h2>
+<div id="voices"></div>
+<script>
+function speak(voice, text) {
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.voice = voice;
+  u.rate = 1.0;
+  window.speechSynthesis.speak(u);
+}
+
+window.speechSynthesis.onvoiceschanged = () => {
+  const voices = window.speechSynthesis.getVoices();
+  const zh = voices.filter(v => v.lang.startsWith('zh'));
+  const list = document.getElementById('voices');
+  if (zh.length === 0) {
+    list.innerHTML = '<p style="color:red">你的浏览器没有中文语音。</p>';
+    return;
+  }
+  zh.forEach(v => {
+    const btn = document.createElement('button');
+    btn.textContent = v.name + ' (' + v.lang + ')';
+    btn.style.cssText = 'display:block;margin:8px;padding:12px 24px;font-size:16px;cursor:pointer';
+    btn.onclick = () => {
+      btn.textContent = v.name + ' — 播放中...';
+      speak(v, '你好，这是语音测试。今天天气不错，适合出去走走。');
+      setTimeout(() => { btn.textContent = v.name + ' (' + v.lang + ')'; }, 5000);
+    };
+    list.appendChild(btn);
+  });
+};
+</script>
+</body>
+</html>
