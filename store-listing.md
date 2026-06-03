@@ -111,7 +111,7 @@
 
 1. 打开 Chrome Web Store 开发者控制台 https://chrome.google.com/webstore/devconsole
 2. 点击「新增项」
-3. 上传 `清读-CleanRead-v2.0.0.zip`
+3. 上传 `清读-CleanRead-v2.0.1.zip`
 4. 填写商店列表信息（参考上方文案）
 5. 上传截图和图标
 6. 填写隐私政策 URL
@@ -129,7 +129,7 @@
 
 ## 上传前检查清单
 
-- [ ] manifest.json 权限已最小化（移除未使用的 host_permissions）
+- [ ] manifest.json 权限已最小化（仅 `storage`；已移除未使用的 `activeTab` + 死代码）
 - [ ] ZIP 包不包含无关文件（node_modules、proxy、worker、测试文件）
 - [ ] 扩展在本地加载后功能正常
 - [ ] 隐私政策 URL 可公网访问

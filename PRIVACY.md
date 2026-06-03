@@ -53,7 +53,7 @@
 
 - 所有网络传输均使用 HTTPS/TLS 加密
 - 本扩展不存储、不缓存用户选中的文字
-- 扩展代码完全开源，可审计：https://github.com/wenjianbro/building
+- 扩展代码完全开源，可审计：https://github.com/wenjianbro/edge-tts-proxy
 
 ## 用户权利
 
@@ -71,5 +71,5 @@
 
 如有隐私相关问题，请通过以下方式联系：
 
-- GitHub Issues: https://github.com/wenjianbro/building/issues
+- GitHub Issues: https://github.com/wenjianbro/edge-tts-proxy/issues
 - 邮箱: yt13716745790@gmail.com
