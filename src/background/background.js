@@ -21,11 +21,6 @@ chrome.storage.sync.get(['voiceId', 'speed'], (items) => {
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   switch (msg.type) {
 
-  // Popup → 获取音色列表
-  case MSG.POPUP_GET_VOICES:
-    sendResponse({ ok: true });
-    break;
-
   // Popup → 保存设置
   case MSG.POPUP_SAVE_SETTINGS:
     if (msg.voiceId) currentSettings.voiceId = msg.voiceId;

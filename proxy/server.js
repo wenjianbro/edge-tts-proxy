@@ -97,8 +97,9 @@ function synthesize(text, voiceId, speed) {
     });
 
     ws.on('close', (code) => {
-      if (!resolved && chunks.length === 0) {
-        clearTimeout(timeout); resolved = true; reject(new Error(`closed:${code}`));
+      if (!resolved) {
+        clearTimeout(timeout); resolved = true;
+        if (chunks.length > 0) { resolve(chunks); } else { reject(new Error(`closed:${code}`)); }
       }
     });
   });
@@ -151,7 +152,7 @@ function synthesizeStream(text, voiceId, speed, onChunk) {
 
     ws.on('close', (code) => {
       if (!resolved) {
-        clearTimeout(timeout); resolved = true; reject(new Error(`closed:${code}`));
+        clearTimeout(timeout); resolved = true; resolve(); // 已推送的 chunk 有效，优雅关闭
       }
     });
   });

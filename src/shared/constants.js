@@ -9,7 +9,6 @@ const CONSTANTS = {
   SPEED_MIN: 0.5,
   SPEED_MAX: 3.0,
   SPEED_STEP: 0.1,
-  OFFS_TIMEOUT_MS: 30000,
 
   REMOTE_TTS_ENDPOINT: 'https://edge-tts-proxy-b7rh.onrender.com'
 };

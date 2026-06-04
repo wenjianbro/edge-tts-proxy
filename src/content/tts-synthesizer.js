@@ -15,21 +15,6 @@ const TTSSynthesizer = {
     this._remoteProvider = new RemoteTTSProvider();
     this._synthProvider = new SpeechSynthesisProvider();
     this._audioManager = new AudioManager();
-
-    this._diagTest();
-  },
-
-  _diagTest() {
-    fetch(`${CONSTANTS.REMOTE_TTS_ENDPOINT}/health`)
-      .then(r => r.text())
-      .then(() => console.log('[tts:diag] ✅ Worker /health OK'))
-      .catch(e => console.warn('[tts:diag] ⚠️ Worker /health 失败:', e.message));
-
-    fetch('https://speech.platform.bing.com/consumer/speech/synthesize/readaloud/voices/list?trustedclienttoken=6A5AA1D4EAFF4E9FB37E23D68491D6F4')
-      .then(r => {
-        if (r.ok) console.log('[tts:diag] ✅ Bing HTTPS 可达 — 语音列表 API 返回 ' + r.status);
-      })
-      .catch(e => console.warn('[tts:diag] ⚠️ Bing HTTPS 不可达:', e.message));
   },
 
   async speak(text, voiceId, speed) {
