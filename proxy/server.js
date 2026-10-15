@@ -1,12 +1,13 @@
 // Edge TTS 代理服务器
 import http from 'node:http';
-import { createHash, randomUUID } from 'node:crypto';
+import { randomUUID } from 'node:crypto';
 import { WebSocket } from 'ws';
+import { TRUSTED_CLIENT_TOKEN, generateSecMsGec, SEC_MS_GEC_VERSION } from './sec-ms-gec.js';
+
+export { generateSecMsGec };
 
 const PORT = parseInt(process.env.PORT || '15555', 10);
-const TRUSTED_CLIENT_TOKEN = '6A5AA1D4EAFF4E9FB37E23D68491D6F4';
 const WSS_BASE = 'wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1';
-const CHROMIUM_FULL_VERSION = '143.0.3650.75';
 
 const EDGE_HEADERS = {
   'Origin': 'https://www.bing.com',
@@ -15,17 +16,7 @@ const EDGE_HEADERS = {
   'Cache-Control': 'no-cache',
 };
 
-function generateSecMsGec() {
-  const WIN_EPOCH_SEC = 11644473600;
-  const TICKS_PER_SEC = 10000000;
-  const TICKS_PER_INTERVAL = 3000000000;
-  const unixSec = Math.floor(Date.now() / 1000);
-  const totalTicks = (unixSec + WIN_EPOCH_SEC) * TICKS_PER_SEC;
-  const intervalTicks = Math.floor(totalTicks / TICKS_PER_INTERVAL) * TICKS_PER_INTERVAL;
-  return createHash('sha256').update(`${intervalTicks}${TRUSTED_CLIENT_TOKEN}`).digest('hex').toUpperCase();
-}
-
-function dateToString() {
+export function dateToString() {
   const d = new Date();
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -33,17 +24,17 @@ function dateToString() {
   return `${days[d.getUTCDay()]} ${months[d.getUTCMonth()]} ${pad(d.getUTCDate())} ${d.getUTCFullYear()} ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())} GMT+0000 (Coordinated Universal Time)`;
 }
 
-function escapeXml(s) {
+export function escapeXml(s) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-function buildSSML(text, voiceId, speed) {
+export function buildSSML(text, voiceId, speed) {
   const ratePercent = Math.round((speed - 1) * 100);
   const rateStr = ratePercent >= 0 ? `+${ratePercent}%` : `${ratePercent}%`;
   return `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="zh-CN"><voice name="${voiceId}"><prosody rate="${rateStr}">${escapeXml(text)}</prosody></voice></speak>`;
 }
 
-function extractAudio(data) {
+export function extractAudio(data) {
   const raw = new Uint8Array(data);
   const headerLen = (raw[0] << 8) | raw[1];
   const audioStart = 2 + headerLen;
@@ -51,7 +42,7 @@ function extractAudio(data) {
 }
 
 // ---- 全量合成（popup 试听用） ----
-function synthesize(text, voiceId, speed) {
+export function synthesize(text, voiceId, speed) {
   return new Promise((resolve, reject) => {
     const secMsGec = generateSecMsGec();
     const connectionId = randomUUID().replace(/-/g, '');
@@ -59,7 +50,7 @@ function synthesize(text, voiceId, speed) {
       TrustedClientToken: TRUSTED_CLIENT_TOKEN,
       ConnectionId: connectionId,
       'Sec-MS-GEC': secMsGec,
-      'Sec-MS-GEC-Version': `1-${CHROMIUM_FULL_VERSION}`,
+      'Sec-MS-GEC-Version': SEC_MS_GEC_VERSION,
     });
 
     const ws = new WebSocket(`${WSS_BASE}?${params.toString()}`, { headers: EDGE_HEADERS });
@@ -106,7 +97,7 @@ function synthesize(text, voiceId, speed) {
 }
 
 // ---- 流式合成（content script 朗读用） ----
-function synthesizeStream(text, voiceId, speed, onChunk) {
+export function synthesizeStream(text, voiceId, speed, onChunk) {
   return new Promise((resolve, reject) => {
     const secMsGec = generateSecMsGec();
     const connectionId = randomUUID().replace(/-/g, '');
@@ -114,7 +105,7 @@ function synthesizeStream(text, voiceId, speed, onChunk) {
       TrustedClientToken: TRUSTED_CLIENT_TOKEN,
       ConnectionId: connectionId,
       'Sec-MS-GEC': secMsGec,
-      'Sec-MS-GEC-Version': `1-${CHROMIUM_FULL_VERSION}`,
+      'Sec-MS-GEC-Version': SEC_MS_GEC_VERSION,
     });
 
     const ws = new WebSocket(`${WSS_BASE}?${params.toString()}`, { headers: EDGE_HEADERS });
@@ -243,4 +234,7 @@ const server = http.createServer(async (req, res) => {
   res.writeHead(404); res.end(JSON.stringify({error:'Not found'}));
 });
 
-server.listen(PORT, () => console.log(`TTS proxy running on port ${PORT}`));
+// 非测试环境才启动服务器（测试直接导入函数，不启动 HTTP）
+if (!process.env.VITEST) {
+  server.listen(PORT, () => console.log(`TTS proxy running on port ${PORT}`));
+}
