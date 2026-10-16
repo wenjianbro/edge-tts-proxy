@@ -3,10 +3,6 @@ name: Edge TTS proxy probe
 on:
   workflow_dispatch:
 
-permissions:
-  contents: read
-  issues: write
-
 jobs:
   probe:
     runs-on: ubuntu-latest
