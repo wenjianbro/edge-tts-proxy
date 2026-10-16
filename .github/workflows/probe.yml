@@ -1,4 +1,4 @@
-name: Edge TTS 代理探活
+name: Edge TTS proxy probe
 
 on:
   schedule:
@@ -17,23 +17,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: 合成探活
+      - name: Probe synthesize
         run: node scripts/probe.js
 
-      - name: 告警（失败时开 issue）
+      - name: Alert on failure
         if: failure()
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          OPEN=$(gh issue list --state open --search 'Edge TTS 代理探活失败' --json number --jq length)
+          OPEN=$(gh issue list --state open --search 'Edge TTS proxy probe failed' --json number --jq length)
           if [ "$OPEN" -eq 0 ]; then
             gh issue create \
-              --title '🚨 Edge TTS 代理探活失败' \
-              --body "定时探活检测到 /synthesize 未返回有效 MP3 音频。
+              --title 'Edge TTS proxy probe failed' \
+              --body "Scheduled probe detected /synthesize did not return valid MP3 audio.
 
-排查方向：Edge TTS 协议是否又变更（参考 rany2/edge-tts 最新 release / issue #490 端点迁移、PR #492 v2 令牌）。
+Check Edge TTS protocol changes (rany2/edge-tts latest release / issue #490 / PR #492).
 
-运行日志：${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           else
-            echo '已有未关闭的探活告警 issue，跳过重复创建'
+            echo 'Open alert issue exists, skip'
           fi
