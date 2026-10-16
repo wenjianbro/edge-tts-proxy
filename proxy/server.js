@@ -7,11 +7,13 @@ import { TRUSTED_CLIENT_TOKEN, generateSecMsGec, SEC_MS_GEC_VERSION } from './se
 export { generateSecMsGec };
 
 const PORT = parseInt(process.env.PORT || '15555', 10);
-const WSS_BASE = 'wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1';
+const WSS_BASE = 'wss://api.msedgeservices.com/tts/cognitiveservices/websocket/v1';
 
 const EDGE_HEADERS = {
-  'Origin': 'https://www.bing.com',
+  'Origin': 'chrome-extension://jdiccldimpdaibmpdkjnbmckianbfold',
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0',
+  'Accept-Encoding': 'gzip, deflate, br, zstd',
+  'Accept-Language': 'en-US,en;q=0.9',
   'Pragma': 'no-cache',
   'Cache-Control': 'no-cache',
 };
@@ -47,7 +49,7 @@ export function synthesize(text, voiceId, speed) {
     const secMsGec = generateSecMsGec();
     const connectionId = randomUUID().replace(/-/g, '');
     const params = new URLSearchParams({
-      TrustedClientToken: TRUSTED_CLIENT_TOKEN,
+      'Ocp-Apim-Subscription-Key': TRUSTED_CLIENT_TOKEN,
       ConnectionId: connectionId,
       'Sec-MS-GEC': secMsGec,
       'Sec-MS-GEC-Version': SEC_MS_GEC_VERSION,
@@ -102,7 +104,7 @@ export function synthesizeStream(text, voiceId, speed, onChunk) {
     const secMsGec = generateSecMsGec();
     const connectionId = randomUUID().replace(/-/g, '');
     const params = new URLSearchParams({
-      TrustedClientToken: TRUSTED_CLIENT_TOKEN,
+      'Ocp-Apim-Subscription-Key': TRUSTED_CLIENT_TOKEN,
       ConnectionId: connectionId,
       'Sec-MS-GEC': secMsGec,
       'Sec-MS-GEC-Version': SEC_MS_GEC_VERSION,
