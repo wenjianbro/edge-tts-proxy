@@ -1,0 +1,39 @@
+name: Edge TTS proxy probe
+
+on:
+  schedule:
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Probe synthesize
+        run: node scripts/probe.js
+
+      - name: Alert on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          OPEN=$(gh issue list --state open --search 'Edge TTS proxy probe failed' --json number --jq length)
+          if [ "$OPEN" -eq 0 ]; then
+            gh issue create \
+              --title 'Edge TTS proxy probe failed' \
+              --body "Scheduled probe detected /synthesize did not return valid MP3 audio.
+
+Check Edge TTS protocol changes (rany2/edge-tts latest release / issue #490 / PR #492).
+
+Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          else
+            echo 'Open alert issue exists, skip'
+          fi
