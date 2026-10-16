@@ -1,7 +1,13 @@
 name: Edge TTS proxy probe
 
 on:
+  schedule:
+    - cron: '17,47 * * * *'
   workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
 
 jobs:
   probe:
@@ -10,10 +16,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Probe synthesize
         run: node scripts/probe.js
+
       - name: Alert on failure
         if: failure()
         env:
           GH_TOKEN: ${{ github.token }}
-        run: echo 'probe failed'
+        run: bash scripts/alert.sh
